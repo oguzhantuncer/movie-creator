@@ -7,7 +7,10 @@ import com.tuncer.moviecreator.model.Actor;
 public interface ActorService {
 	
 	Actor getActorById(Long id);
-	Actor saveActor(Actor actor);	
+	List<Actor> getActorByName(String name);
+	Actor saveActor(Actor actor);
+	Actor updateActor(Actor actor);
+	void deleteActor(Long id);
 	List<Actor> getActors();
 
 }

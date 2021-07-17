@@ -34,4 +34,19 @@ public class ActorServiceImpl implements ActorService {
 		return actorRepository.findAll();
 	}
 
+	@Override
+	public Actor updateActor(Actor actor) {
+		return actorRepository.save(actor);
+	}
+
+	@Override
+	public void deleteActor(Long id) {
+		actorRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Actor> getActorByName(String name) {
+		return actorRepository.findByName(name);
+	}
+
 }

@@ -7,5 +7,7 @@ import com.tuncer.moviecreator.model.Movie;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
+	
+	Movie findByName(String name);
 
 }
