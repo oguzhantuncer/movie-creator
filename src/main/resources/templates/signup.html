@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title>Register</title>
+</head>
+
+<body>
+	<form class="form-padding rounded-lg bg-warning"
+		th:action="@{/register}" th:object="${user}" method="post">
+		<div class="form-group">
+			<label for="username">Username</label> <input type="text"
+				class="form-control" id="username" placeholder="Username"
+				th:field=*{username}>
+		</div>
+		<div class="form-group">
+			<label for="mail">Mail</label> <input type="email"
+				class="form-control" id="mail" placeholder="Mail"
+				th:field=*{mail}>
+		</div>
+		<label for="role">Role</label> <select id="role"
+			th:field=*{role}>
+			<option
+				th:each="role : ${T(com.tuncer.moviecreator.types.RoleType).values()}"
+				th:value="${role}" th:text="${role}"></option>
+		</select>
+		<div class="form-group">
+			<label for="password">Password</label> <input type="password"
+				class="form-control" id="password" placeholder="Password"
+				th:field=*{password}>
+		</div>
+		<button type="submit" class="btn btn-primary">Create Account</button>
+	</form>
+</body>
+</html>
