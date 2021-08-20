@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div th:replace="common/header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Actors</h2>
+        </div>
+        <div class="col mt-5 mb-3">
+            <form th:action="@{/actor/search}" th:object="${search}" method="post">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" name="actorName" th:value="${search.actorName}" placeholder="By Actor Name">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-outline-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                <tr class="table-info">
+                    <th scope="col"><b>Name</b></th>
+                    <th scope="col"><b>Surname</b> </th>
+                    <th scope="col"><b>Birth Date</b> </th>
+                    <th scope="col"><b>Operation</b> </th>
+                </tr>
+                </thead>
+                <tr th:if="${#lists.isEmpty(actors)}">
+                    <td>No Records found. Add some movie!</td>
+                </tr>
+                <tr th:each="actor, i: ${actors}">
+                    <td th:text="${actor.name}" />
+                    <td th:text="${actor.surname}" />
+                    <td th:text="${actor.birthDate}" />
+                    <td>
+                        <form th:action="@{/actor/edit}" th:object="${actor}" method="post">
+                            <input type="hidden" name="id" th:value="${actor.id}">
+                            <input type="hidden" name="name" th:value="${actor.name}">
+                            <input type="hidden" name="surname" th:value="${actor.surname}">
+                            <input type="hidden" name="birthDate" th:value="${actor.birthDate}">
+                            <button type="submit" class="btn btn-outline-primary">Update</button>
+                        </form>
+                        <form th:action="@{/actor/delete}" th:object="${actor}" method="post">
+                            <input type="hidden" name="id" th:value="${actor.id}">
+                            <input type="hidden" name="name" th:value="${actor.name}">
+                            <input type="hidden" name="surname" th:value="${actor.surname}">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <form th:action="@{/actor/create}" th:object="${actor}" method="post">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Create an Actor</button>
+    </form>
+
+</div>
+</body>
+</html>

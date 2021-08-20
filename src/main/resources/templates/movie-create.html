@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <title>Movie Create</title>
+</head>
+<body>
+<div th:replace="common/header"></div>
+
+<div class="container">
+    <h2>Create a Movie</h2>
+
+    <div class="row">
+        <div class="col">
+            <form method="post" th:action="@{/movie}" th:object="${movie}">
+                <div class="form-group">
+                    <input class="form-control" id="name" placeholder="Movie Name" required th:field="*{name}" type="text"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="description" placeholder="Movie Description" required th:field="*{description}" type="text"/>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="publishYear" placeholder="Movie Year" required th:field="*{publishYear}" type="text"/>
+                </div>
+                <div class="form-group">
+                    <input  class="form-control"id="production" placeholder="Movie Production From" required th:field="*{production}" type="text"/>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="genreList" required th:field="*{genreList}">
+                        <option
+                                th:each="genreList : ${T(com.tuncer.moviecreator.types.GenreType).values()}"
+                                th:value="${genreList}" th:text="${genreList}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" value="Create Movie">
+                    <input class="btn btn-danger" type="reset" value="Reset">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

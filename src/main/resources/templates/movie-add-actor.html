@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <title>Movie Create</title>
+</head>
+    <body>
+        <div th:replace="common/header"></div>
+
+        <div class="container">
+            <h2>Add Actor to Movie</h2>
+
+            <div class="row">
+                <div class="col">
+                    <form method="post" th:action="@{/movie}" th:object="${movie}">
+                        <div class="row">
+                            <input class="form-control" type="hidden" name="id" th:value="${movie.id}" readonly>
+                            <div class="col">
+                                <input class="form-control" type="text" name="name" th:value="${movie.name}" readonly>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="description" th:value="${movie.description}" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" type="text" name="genreList" th:value="${movie.genreList}" readonly>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="production" th:value="${movie.production}" readonly>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="publishYear" th:value="${movie.publishYear}" readonly>
+                            </div>
+                        </div>
+                        <select multiple th:field="*{actorsInMovie}" class="form-control">
+                            <option th:each="actor : ${actors}"
+                                    th:value="${actor.id}"
+                                    th:text="${actor.name}">
+                            </option>
+                        </select>
+                        <input class="btn btn-primary" type="submit" value="Save Cast">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

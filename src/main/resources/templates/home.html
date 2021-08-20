@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>Spring Security Example</title>
+        <title>Movie-Creator</title>
+        <meta charset="UTF-8">
+        <link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
     </head>
     <body>
-        <h1>Welcome!</h1>
-        <p>Click <a th:href="@{/movie}">here</a> to for movie operations.</p>
-        <p>Click <a th:href="@{/actor}">here</a> to for actor operations.</p>
-        <p>Click <a th:href="@{/signup}">here</a> to signup.</p>
-        
+        <div th:replace="common/header"></div>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Hello, You are in Movie Creator!</h1>
+                        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                        <hr class="my-4">
+                        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" th:href="@{/movie}" role="button">Movies</a>
+                            <a class="btn btn-primary btn-lg" th:href="@{/actor}" role="button">Actors</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

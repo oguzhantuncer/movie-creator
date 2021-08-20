@@ -1,34 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-<title>Register</title>
-</head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
+	</head>
+	<body>
+	<div th:replace="common/header"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<form class="mt-5" th:action="@{/register}" th:object="${user}" method="post">
+						<div class="form-group">
+							<label for="username">Username</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">@</div>
+								</div>
+								<input type="text" class="form-control" id="username" th:field=*{username} placeholder="Username">
+							</div>
+						</div>
 
-<body>
-	<form class="form-padding rounded-lg bg-warning"
-		th:action="@{/register}" th:object="${user}" method="post">
-		<div class="form-group">
-			<label for="username">Username</label> <input type="text"
-				class="form-control" id="username" placeholder="Username"
-				th:field=*{username}>
+
+						<div class="form-group">
+							<label for="mail">Mail</label>
+							<input type="email" class="form-control" id="mail" placeholder="Mail" th:field=*{mail}>
+						</div>
+						<div class="form-group">
+							<label for="role">Role</label>
+							<select class="custom-select mr-sm-2" id="role" th:field=*{role}>
+								<option th:each="role : ${T(com.tuncer.moviecreator.types.RoleType).values()}"
+										th:value="${role}" th:text="${role}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" placeholder="Password"
+																		  th:field=*{password}>
+						</div>
+						<button type="submit" class="btn btn-primary">Create Account</button>
+					</form>
+				</div>
+			</div>
 		</div>
-		<div class="form-group">
-			<label for="mail">Mail</label> <input type="email"
-				class="form-control" id="mail" placeholder="Mail"
-				th:field=*{mail}>
-		</div>
-		<label for="role">Role</label> <select id="role"
-			th:field=*{role}>
-			<option
-				th:each="role : ${T(com.tuncer.moviecreator.types.RoleType).values()}"
-				th:value="${role}" th:text="${role}"></option>
-		</select>
-		<div class="form-group">
-			<label for="password">Password</label> <input type="password"
-				class="form-control" id="password" placeholder="Password"
-				th:field=*{password}>
-		</div>
-		<button type="submit" class="btn btn-primary">Create Account</button>
-	</form>
-</body>
+	</body>
 </html>

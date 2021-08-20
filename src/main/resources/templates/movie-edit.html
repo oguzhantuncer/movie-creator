@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<p>welcome <span th:text="${username}"></span></p>
+
+<h2>Movie-Edit</h2>
+
+<div>
+    <form th:action="@{/movie}" th:object="${movie}" method="post">
+        <input type="hidden" name="id" th:value="${movie.id}">
+        <input type="text" name="name" th:value="${movie.name}" readonly="">
+        <input type="text" name="description" th:value="${movie.description}">
+        <select id="genreList" required th:field="*{genreList}">
+            <option
+                    th:each="genreList : ${T(com.tuncer.moviecreator.types.GenreType).values()}"
+                    th:value="${genreList}" th:text="${genreList}"></option>
+        </select>
+        <input type="text" name="production" th:value="${movie.production}">
+        <input type="text" name="publishYear" th:value="${movie.publishYear}">
+        <button type="submit">UPDATE</button>
+    </form>
+</div>
+
+</body>
+</html>

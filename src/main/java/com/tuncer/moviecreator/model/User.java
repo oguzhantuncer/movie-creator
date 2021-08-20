@@ -1,81 +1,74 @@
 package com.tuncer.moviecreator.model;
 
+import com.tuncer.moviecreator.types.RoleType;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import com.tuncer.moviecreator.types.RoleType;
 
 @Entity
 @Table
 public class User {
 
-	@Id
-	@GeneratedValue( strategy=GenerationType.AUTO )
-	private Long id;
-	private String username;
-	private String password;
-	private String mail;
-	@Enumerated
-	private RoleType role;
-	
-	@OneToMany
-	private List<Movie> movies = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String username;
+    private String password;
+    private String mail;
+    @Enumerated
+    private RoleType role;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToMany
+    private List<Movie> movies = new ArrayList<>();
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getMail() {
-		return mail;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public String getMail() {
+        return mail;
+    }
 
-	public RoleType getRole() {
-		return role;
-	}
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public void setRole(RoleType role) {
-		this.role = role;
-	}
+    public RoleType getRole() {
+        return role;
+    }
 
-	public List<Movie> getMovies() {
-		return movies;
-	}
+    public void setRole(RoleType role) {
+        this.role = role;
+    }
 
-	public void setMovies(List<Movie> movies) {
-		this.movies = movies;
-	}
+    public List<Movie> getMovies() {
+        return movies;
+    }
 
-	
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
+
 }

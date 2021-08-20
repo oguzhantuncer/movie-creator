@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div th:replace="common/header"></div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Users</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                <tr class="table-info">
+                    <th scope="col"><b>Username</b></th>
+                    <th scope="col"><b>Mail</b> </th>
+                    <th scope="col"><b>Operation</b> </th>
+                </tr>
+                </thead>
+                <tr th:each="user, i: ${users}">
+                    <td th:text="${user.username}" />
+                    <td th:text="${user.mail}" />
+                    <td>
+                        <form th:action="@{/user/delete}" th:object="${user}" method="post">
+                            <input type="hidden" name="id" th:value="${user.id}">
+                            <input type="hidden" name="name" th:value="${user.username}">
+                            <input type="hidden" name="mail" th:value="${user.mail}">
+                            <button type="submit" class="btn btn-outline-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

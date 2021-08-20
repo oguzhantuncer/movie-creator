@@ -1,16 +1,27 @@
 package com.tuncer.moviecreator.service;
 
+import com.tuncer.moviecreator.model.Actor;
+import com.tuncer.moviecreator.model.SearchRequestFilter;
+import org.springframework.ui.Model;
+
 import java.util.List;
 
-import com.tuncer.moviecreator.model.Actor;
-
 public interface ActorService {
-	
-	Actor getActorById(Long id);
-	List<Actor> getActorByName(String name);
-	Actor saveActor(Actor actor);
-	Actor updateActor(Actor actor);
-	void deleteActor(Long id);
-	List<Actor> getActors();
+
+    Actor getActorById(Long id);
+
+    List<Actor> getActorByName(String name);
+
+    List<Actor> search(SearchRequestFilter searchRequestFilter);
+
+    Actor saveActor(Actor actor);
+
+    Actor updateActor(Actor actor);
+
+    List<Actor> getActors();
+
+    void deleteActor(Long id);
+
+    void fillModel(Model model);
 
 }

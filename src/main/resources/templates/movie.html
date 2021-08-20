@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link th:rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    </head>
+    <body>
+    <div th:replace="common/header"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Movies</h2>
+                </div>
+                <div class="col mt-5 mb-3">
+                    <form th:action="@{/movie/search}" th:object="${search}" method="post">
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" name="movieName" th:value="${search.movieName}" placeholder="By Movie Name">
+                            </div>
+                            <div class="col">
+                                <select class="form-control" id="genreList"  th:field="${search.genreType}">
+                                    <option
+                                            th:each="genreList : ${T(com.tuncer.moviecreator.types.GenreType).values()}"
+                                            th:value="${genreList}" th:text="${genreList}"></option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-outline-primary">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-info">
+                                <th scope="col"><b>Name</b></th>
+                                <th scope="col"><b>Description</b> </th>
+                                <th scope="col"><b>Genre</b> </th>
+                                <th scope="col"><b>Production</b> </th>
+                                <th scope="col"><b>Publish Year</b> </th>
+                                <th scope="col"><b>Cast</b> </th>
+                                <th scope="col"><b>Operation</b> </th>
+                            </tr>
+                        </thead>
+                        <tr th:if="${#lists.isEmpty(movies)}">
+                            <td>No Records found. Add some movie!</td>
+                        </tr>
+                        <tr th:each="movie, i: ${movies}">
+                            <td th:text="${movie.name}" />
+                            <td th:text="${movie.description}" />
+                            <td th:text="${movie.genreList}" />
+                            <td th:text="${movie.production}" />
+                            <td th:text="${movie.publishYear}" />
+                            <td>
+                                <select class="form-control" id="actors" required>
+                                <option
+                                        th:each="actor : ${movie.actorsInMovie}"
+                                        th:value="${actor.id}" th:text="${actor.getFullName()}"></option>
+                                </select>
+                            </td>
+                            <td>
+                                <form th:action="@{/movie/edit}" th:object="${movie}" method="post">
+                                    <input type="hidden" name="id" th:value="${movie.id}">
+                                    <input type="hidden" name="name" th:value="${movie.name}">
+                                    <input type="hidden" name="description" th:value="${movie.description}">
+                                    <input type="hidden" name="genreList" th:value="${movie.genreList}">
+                                    <input type="hidden" name="production" th:value="${movie.production}">
+                                    <input type="hidden" name="publishYear" th:value="${movie.publishYear}">
+                                    <button type="submit" class="btn btn-outline-primary">Update</button>
+                                </form>
+                                <form th:action="@{/movie/delete}" th:object="${movie}" method="post">
+                                    <input type="hidden" name="id" th:value="${movie.id}">
+                                    <input type="hidden" name="name" th:value="${movie.name}">
+                                    <input type="hidden" name="description" th:value="${movie.description}">
+                                    <input type="hidden" name="genreList" th:value="${movie.genreList}">
+                                    <input type="hidden" name="production" th:value="${movie.production}">
+                                    <input type="hidden" name="publishYear" th:value="${movie.publishYear}">
+                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                </form>
+                                <form th:action="@{/movie/actor}" th:object="${movie}" method="post">
+                                    <input type="hidden" name="id" th:value="${movie.id}">
+                                    <input type="hidden" name="name" th:value="${movie.name}">
+                                    <input type="hidden" name="description" th:value="${movie.description}">
+                                    <input type="hidden" name="genreList" th:value="${movie.genreList}">
+                                    <input type="hidden" name="production" th:value="${movie.production}">
+                                    <input type="hidden" name="publishYear" th:value="${movie.publishYear}">
+                                    <button type="submit" class="btn btn-outline-info">Add Actors</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <form th:action="@{/movie/create}" th:object="${movie}" method="post">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Create a Movie</button>
+            </form>
+        </div>
+    </body>
+</html>
