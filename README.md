@@ -32,3 +32,14 @@ Her iki işlemde de proje in memory bir H2 veritabanı ile birlikte 8081 portund
 ###Users
 * Mevcut user kayıtlarına sadece ADMIN rolüne sahip bir kullanıcı ile listeleyebilir ve üzerinde işlem yapılabilir.
 * Proje'de mevcut olmayan bir user ile işlem yapılamaz. 
+
+##Uygulamadan görüntüler
+[![N|Solid](
+https://github.com/oguzhantuncer/movie-creator/blob/master/img/screen1.png?raw=true
+)]
+[![N|Solid](
+https://github.com/oguzhantuncer/movie-creator/blob/master/img/screen2.png?raw=true
+)]
+[![N|Solid](
+https://github.com/oguzhantuncer/movie-creator/blob/master/img/screen3.png?raw=true
+)]
